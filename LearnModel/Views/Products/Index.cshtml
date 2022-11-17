@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+@model List<Product>
+<h1>Ürünler</h1>
+<a asp-controller="pruducts" asp-action="add">Ürün Ekleme</a>
+<table class="table">
+    <thead>
+        <tr>
+        <th>Id</th>
+        <th>İsim</th>
+        <th>Fiyat</th>
+        <th>Stock</th>
+        <th>İşlem</th>
+        </tr>
+     </thead>
+     <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*Datayı getirme işlemi için forearch yazdık*@
+            <td>@item.Id</td>
+             <td>@item.Name</td>
+               <td>@item.Price</td>
+                <td>@item.Stock</td>
+                @*Delete işlemi yaptık*@
+                 <td><a asp-controller="products" asp-action="remove" asp-route-id="@item.Id">Sil</a></td>
+                 @*Update yapmak için*@
+                     <td><a asp-controller="products" asp-action="update" asp-route-id="@item.Id">Güncelle</a></td>
+        </tr>     
+    }
+    </tbody>
+
+</table>
+
